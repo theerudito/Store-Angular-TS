@@ -1,0 +1,7 @@
+<mat-toolbar color="primary">
+  <a [routerLink]="['/']" mat-button> <span>My Store</span> </a>
+
+  <span class="space">
+    <app-cart (click)="goToCheckout()"> </app-cart>
+  </span>
+</mat-toolbar>

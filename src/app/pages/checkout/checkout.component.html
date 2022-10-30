@@ -1,0 +1,87 @@
+<!--en angular hay dos tipos de formularios uno reactivo y otro-->
+<!--template reactive-->
+<!--template driven form-->
+
+<div class="container">
+  <form class="formItem" #checkoutForm="ngForm">
+    <mat-form-field appearance="fill" class="form_element">
+      <input
+        matInput
+        type="text"
+        placeholder="Name"
+        required
+        [(ngModel)]="model.name"
+        name="name"
+        #name="ngModel"
+      />
+
+      <mat-error *ngIf="name.valid || name.pristine"
+        >Name is required</mat-error
+      >
+    </mat-form-field>
+
+    <mat-radio-group class="form_element">
+      <p>Choose an action:</p>
+      <mat-radio-button
+        value="pickup"
+        (change)="onPickupDelevery(false)"
+        checked=""
+        >PickUp</mat-radio-button
+      >
+      <mat-radio-button value="delevery" (change)="onPickupDelevery(true)" checked
+        >Delevery</mat-radio-button
+      >
+    </mat-radio-group>
+
+    <ng-container *ngIf="isDelivery; else showStores">
+      <mat-form-field appearance="fill" class="form_element">
+        <input
+          matInput
+          type="text"
+          placeholder="Address"
+          required
+          [(ngModel)]="model.address"
+          name="address"
+          #address="ngModel"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form_element">
+        <input
+          matInput
+          type="text"
+          placeholder="city"
+          required
+          [(ngModel)]="model.city"
+          name="city"
+          #city="ngModel"
+        /> </mat-form-field
+    ></ng-container>
+
+    <ng-template #showStores>
+      <mat-form-field class="form_element">
+        <mat-label>Select me</mat-label>
+        <mat-select name="store" #store="ngModel" [(ngModel)]="model.store">
+          <mat-option [value]="tienda" *ngFor="let tienda of stores"
+            >{{ tienda.name }} - {{ tienda.openingHours }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </ng-template>
+  </form>
+</div>
+
+<app-details></app-details>
+
+<div class="container_button">
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="!checkoutForm.form.valid"
+    color="primary"
+    type="submit"
+    (click)="onSumbit(checkoutForm)"
+  >
+    Checkout
+  </button>
+</div>

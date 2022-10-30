@@ -1,0 +1,20 @@
+<!-- PASAR A UN COMPONENTE HIJO AL PADRE-->
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title> Name: {{ product.name }} </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>Description: {{ product.description }} </mat-card-content>
+
+  <mat-card-actions>
+    <!-- PASAR A UN COMPONENTE HIJO AL PADRE-->
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="onClick()"
+      [disabled]="product.stock === 0"
+    >
+      ADD TO CART {{ product.price | currency }}
+      <mat-icon>add_shopping_cart</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

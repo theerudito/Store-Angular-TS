@@ -1,0 +1,9 @@
+<!-- PASAR A UN COMPONENTE EL PADRE AL HIJO-->
+<section class="products">
+  <app-product
+  
+     (addToCartClick)="addToCart($event)"
+    [product]="product"
+    *ngFor="let product of products"
+  ></app-product>
+</section>
